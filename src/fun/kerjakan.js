@@ -34,7 +34,7 @@ module.exports = async function ({ log = "", url = "http://localhost:3000" } = {
             content
         })
 
-        await fetch(`https://wa.wibudev.com/code?text=youtube success ${y_up.join(" ")} content: ${text.text}&nom=6289697338821`)
+        await fetch(`https://wa.wibudev.com/code?text=youtube success \n${y_up.join(" ")} \ncontent: ${text.text}&nom=6289697338821`)
 
         return log
     } catch (error) {
