@@ -19,11 +19,11 @@ module.exports = async function ({ log = false, loop = 15 } = {}
             pixelFormat: 'yuv420p'
         };
 
-        try {
-            await fs.promises.access(path.join(__dirname, './../../assets/out'))
-        } catch (error) {
-            await fs.promises.mkdir(path.join(__dirname, './../../assets/out'))
-        }
+        // try {
+        //     await fs.promises.access(path.join(__dirname, './../../assets/out'))
+        // } catch (error) {
+        //     await fs.promises.mkdir(path.join(__dirname, './../../assets/out'))
+        // }
 
         await new Promise((resolve, reject) => {
             videoshow([path.join(__dirname, "./../../assets/png/gambar.png")], videoOptions)

@@ -5,7 +5,7 @@ const youtube_upload = require("./youtube_upload")
 const get_hadis = require("./get_hadis")
 
 
-module.exports = async function ({ log = "", url = "http://localhost:3000" } = {}) {
+module.exports = async function ({ pro = false, log = "", url = "http://localhost:3000" } = {}) {
     log += url + "\n"
     try {
         log += "mengambil data content \n"
@@ -29,12 +29,15 @@ module.exports = async function ({ log = "", url = "http://localhost:3000" } = {
 
         log += "upload content \n"
 
+        if (pro) {
+            const y_up = await youtube_upload({
+                content
+            })
 
-        const y_up = await youtube_upload({
-            content
-        })
-
-        await fetch(`https://wa.wibudev.com/code?text=youtube success \n${y_up.join(" ")} \ncontent: ${text.text}&nom=6289697338821`)
+            await fetch(`https://wa.wibudev.com/code?text=youtube success \n${y_up.join(" ")} \ncontent: ${text.text}&nom=6289697338821`)
+        } else {
+            log += "TEST \n"
+        }
 
         return log
     } catch (error) {

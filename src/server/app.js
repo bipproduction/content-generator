@@ -44,7 +44,7 @@ module.exports = async function () {
         return res.sendFile(path.join(__dirname, "./public/generator.html"))
     })
 
-    app.get('/kerjakan-hadis', async (req, res) => {
+    app.get('/kerjakan-hadis/:pro?', async (req, res) => {
 
         // console.log(`${req.protocol}://${req.get("host")}${req.originalUrl}`)
         const url = `${req.protocol}://${req.get("host")}`
