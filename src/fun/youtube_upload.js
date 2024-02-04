@@ -12,7 +12,7 @@ module.exports = async function ({ content = {
     const up = (await import('log-update')).default
     const youtube_upload = await upload({
         email: crp.decrypt(makuro_config.email),
-        pass: crp.decrypt(makuro_config.password)
+        pass: crp.decrypt(makuro_config.password),
     }, [
         {
             path: path.join(__dirname, "./../../assets/out/video.mp4"),
@@ -31,7 +31,7 @@ module.exports = async function ({ content = {
             isChannelMonetized: false,
 
         }
-    ], { headless: "chrome" })
+    ], { headless: "chrome", args: ['--no-sandbox'] })
 
     console.log("Upload Success")
     return youtube_upload
