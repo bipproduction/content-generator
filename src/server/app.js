@@ -30,6 +30,16 @@ module.exports = async function () {
     //     res.send(text.text)
     // })
 
+    app.get('/gambar', (req, res) => {
+        res.setHeader("Content-Type", "image/png")
+        res.sendFile(path.join(__dirname, "./../../assets/png/gambar.png"))
+    })
+
+    app.get('/video', (req, res) => {
+        res.setHeader("Content-Type", "video/mp4")
+        res.sendFile(path.join(__dirname, "./../../assets/out/video.mp4"))
+    })
+
     app.get('/generator', (req, res) => {
         return res.sendFile(path.join(__dirname, "./public/generator.html"))
     })
