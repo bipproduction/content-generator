@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hadis {
+  id              String           @id @default(cuid())
+  text            String           @db.Text
+  role            String?
+  parentMessageId String?
+  conversationId  String?
+  active          Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updateAt        DateTime         @updatedAt
+  HadisPublished  HadisPublished[]
+}
+
+model HadisPublished {
+  id        String   @id @default(cuid())
+  Hadis     Hadis    @relation(fields: [hadisId], references: [id])
+  hadisId   String
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}

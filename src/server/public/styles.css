@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0768d0;
+    /* Warna latar belakang sesuaikan dengan kelas bg-danger */
+}
+
+#content {
+    text-align: center;
+    color: white;
+    /* Warna teks yang kontras dengan latar belakang */
+}
