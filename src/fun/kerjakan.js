@@ -39,11 +39,13 @@ module.exports = async function ({ pro = false, log = "", url = "http://localhos
             log += "TEST \n"
         }
 
+        console.log(log)
         return log
     } catch (error) {
         log += "error \n"
         log += error.message
         await fetch(`https://wa.wibudev.com/code?text=${error.message}&nom=6289697338821`)
+        console.log(log)
         return log
     }
 }
