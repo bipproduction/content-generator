@@ -43,6 +43,8 @@ module.exports = async function ({
     await page.goto(`${url}/generator?content=${content}`);
     await new Promise(r => setTimeout(r, 2000))
 
+    console.log(url+"/generator")
+
     log && console.log("mengambil screenshot")
     const screenshotPath = path.join(__dirname, './../../assets/png/gambar.png');
     try {
