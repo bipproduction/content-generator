@@ -14,7 +14,7 @@ const os = require('os');
  */
 module.exports = async function ({
     content = "require content",
-    log = false,
+    log = "",
     url = 'http://localhost:3000',
     headless = "new"
 } = {}) {
@@ -36,34 +36,32 @@ module.exports = async function ({
     const page = (await browser.pages())[0]
     // await page.setDefaultNavigationTimeout(6000);
 
-    log && console.log("set user agent")
+    log += "set user agent"
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
-    log && console.log("menuju ke alamat")
+    log += "menuju ke alamat"
     const encodedContent = encodeURIComponent(content);
-    console.log(`${url}/generator?content=${encodedContent}`)
+    const tujuan = `${url}/generator?content=${encodedContent}`
 
-    await page.goto(`${url}/generator`);
+    await page.goto(tujuan);
     await new Promise(r => setTimeout(r, 2000))
 
-    
-
-    log && console.log("mengambil screenshot")
+    log += "mengambil screenshot"
     const screenshotPath = path.join(__dirname, './../../assets/png/gambar.png');
     try {
         // Check if the file exists, and if it does, delete it
         await fs.promises.access(screenshotPath);
         await fs.promises.unlink(screenshotPath);
-        log && console.log('Previous screenshot deleted.');
+        log += 'Previous screenshot deleted.';
     } catch (error) {
-        log && console.log('No previous screenshot found.');
+        log += 'No previous screenshot found.';
     }
 
     // Take a screenshot
-    log && console.log("menyimpan hasil screenshot")
+    log += "menyimpan hasil screenshot"
     await page.screenshot({ path: path.join(__dirname, "./../../assets/png/gambar.png"), type: "png" });
 
     // Close the browser
-    log && console.log("menutup browser")
+    log += "menutup browser"
     await browser.close();
 }
