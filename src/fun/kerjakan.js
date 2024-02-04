@@ -30,11 +30,11 @@ module.exports = async function ({ log = "", url = "http://localhost:3000" } = {
         log += "upload content \n"
 
 
-        // const y_up = await youtube_upload({
-        //     content
-        // })
+        const y_up = await youtube_upload({
+            content
+        })
 
-        // await fetch(`https://wa.wibudev.com/code?text=youtube success \n${y_up.join(" ")} \ncontent: ${text.text}&nom=6289697338821`)
+        await fetch(`https://wa.wibudev.com/code?text=youtube success \n${y_up.join(" ")} \ncontent: ${text.text}&nom=6289697338821`)
 
         return log
     } catch (error) {
