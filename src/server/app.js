@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "./public")))
 
 
 module.exports = async function () {
-    
+
 
     // app.get("/hadis", async (req, res) => {
     //     const hadis = await get_hadis(api)
@@ -37,9 +37,10 @@ module.exports = async function () {
     app.get('/kerjakan-hadis', async (req, res) => {
 
         // console.log(`${req.protocol}://${req.get("host")}${req.originalUrl}`)
+        const url = `${req.protocol}://${req.get("host")}`
         res.setHeader('Content-Type', 'text/plain');
         const ker = await kerjakan({
-            url: `${req.protocol}://${req.get("host")}`
+            url
         })
 
         res.send(ker)
