@@ -1,7 +1,11 @@
 const _ = require('lodash')
+const api_ai = require('./api_ai')
 const prisma = new (require('@prisma/client')).PrismaClient()
 
-module.exports = async function funGetHadist(api, log = false) {
+
+module.exports = async function funGetHadist(log = false) {
+    const api = await api_ai()
+
     // Mengambil hadis terakhir dari database
     log && console.log("Mengambil hadis terakhir dari database")
     const lastHadis = await prisma.hadis.findFirst({
@@ -41,7 +45,7 @@ module.exports = async function funGetHadist(api, log = false) {
     } else {
         // Mengulang bertanya jika data sudah ada di database
         log && console.log("sudah ada dilulang lagi")
-        await new Promise(r => setTimeout(r, 5000))
+        await new Promise(r => setTimeout(r, 10000))
         return await funGetHadist(api);
     }
 }
