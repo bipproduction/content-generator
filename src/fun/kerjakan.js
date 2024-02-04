@@ -38,7 +38,9 @@ module.exports = async function ({ log = "", url = "http://localhost:3000" } = {
 
         return log
     } catch (error) {
-        await fetch(`https://wa.wibudev.com/code?text=error&nom=6289697338821`)
-        return "error"
+        log += "error \n"
+        log += error.message
+        await fetch(`https://wa.wibudev.com/code?text=${error.message}&nom=6289697338821`)
+        return log
     }
 }
