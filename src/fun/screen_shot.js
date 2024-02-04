@@ -40,7 +40,8 @@ module.exports = async function ({
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
     log && console.log("menuju ke alamat")
-    await page.goto(`${url}/generator?content=${content}`);
+    const encodedContent = encodeURIComponent(content);
+    await page.goto(`${url}/generator?content=${encodedContent}`);
     await new Promise(r => setTimeout(r, 2000))
 
     console.log(url+"/generator")
