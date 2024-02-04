@@ -41,10 +41,12 @@ module.exports = async function ({
 
     log && console.log("menuju ke alamat")
     const encodedContent = encodeURIComponent(content);
-    await page.goto(`${url}/generator?content=${encodedContent}`);
+    console.log(`${url}/generator?content=${encodedContent}`)
+
+    await page.goto(`${url}/generator`);
     await new Promise(r => setTimeout(r, 2000))
 
-    console.log(`${url}/generator?content=${encodedContent}`)
+    
 
     log && console.log("mengambil screenshot")
     const screenshotPath = path.join(__dirname, './../../assets/png/gambar.png');
