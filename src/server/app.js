@@ -50,6 +50,7 @@ module.exports = async function () {
         const url = `${req.protocol}://${req.get("host")}`
         res.setHeader('Content-Type', 'text/plain');
         const ker = await kerjakan({
+            pro: req.params.pro ?? false,
             url
         })
 
